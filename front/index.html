@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de adição</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form id="AddStartup">
+    <h1>Adicionar startup</h1>
+
+    <div>
+      <h3>Nome da empresa</h3>
+      <input type="text" id="nome" name="nome" placeholder="Digite um nome...">
+    </div>
+
+    <div>
+      <h3>Setor da empresa</h3>
+      <select id="setor" name="setor">
+        <option value="">Selecione</option>
+        <option value="Fintech">Fintech</option>
+        <option value="Tech">Tech</option>
+        <option value="IA">IA</option>
+        <option value="Agtech">Agtech</option>
+        <option value="Healthtech">Healthtech</option>
+        <option value="Edutech">Edutech</option>
+        <option value="Proptech">Proptech</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
+
+    <div>
+      <h3>Público-alvo</h3>
+      <select id="publico_alvo" name="publico_alvo">
+        <option value="">Selecione</option>
+        <option value="B2B">B2B</option>
+        <option value="B2C">B2C</option>
+        <option value="B2B2C">B2B2C</option>
+        <option value="B2G">B2G</option>
+      </select>
+    </div>
+
+    <div>
+      <h3>Modelo de monetização</h3>
+      <select id="monetizacao" name="monetizacao" >
+        <option value="">Selecione</option>
+        <option value="SaaS">SaaS</option>
+        <option value="Marketplace">Marketplace</option>
+        <option value="Licenciamento">Licenciamento</option>
+        <option value="Recorrência">Recorrência</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
+
+    <div>
+      <h3>Descrição</h3>
+      <textarea rows="4" cols="40" id="descricao" name="descricao" placeholder="Digite uma breve descrição da startup..."></textarea>
+    </div>
+
+    <div>
+      <h3>Aporte solicitado</h3>
+      <span>R$</span>
+      <input type="number" id="aporte_pedido" name="aporte_pedido" min="0" step="1000" placeholder="0.00">
+    </div>
+
+    <div>
+      <h3>Participação ofertada</h3>
+      <input type="number" id="participacao" name="participacao" min="0.01" max="100" step="1" placeholder="0.00">
+      <span>%</span>
+    </div>
+
+    <div>
+      <h3>Faturamento anual</h3>
+      <span>R$</span>
+      <input type="number" id="faturamento" name="faturamento" min="0" step="1000" placeholder="0.00">
+    </div>
+
+    <div>
+      <h3>Margem de lucro</h3>
+      <input type="number" id="margem" name="margem" min="0" max="100" step="1" placeholder="0.00">
+      <span>%</span>
+    </div>
+
+    <div>
+      <button type="button">Cancelar</button>
+      <button type="submit">Salvar startup</button>
+    </div>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
