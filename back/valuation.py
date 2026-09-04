@@ -30,7 +30,7 @@ def calcularEV(faturamento, margem, setor, monetizacao):
     if faturamento <= 4800000:
         multiplo *= 0.833
     elif faturamento <= 300000000:
-        multiplo = multiplo # apenas materializando que não há desconto nem aumento para médias empresas
+        pass # apenas materializando que não há desconto nem aumento para médias empresas
     else:
         multiplo *= 1.238
 

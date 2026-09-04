@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
+from valuation import calcularEV, estimarEV
 
 import models, schemas
 from database import engine, get_db
@@ -20,7 +21,27 @@ app.add_middleware(
 
 @app.post("/startups/", response_model=schemas.StartupResponse)
 def criar_startup(startup: schemas.StartupCreate, db: Session = Depends(get_db)):
-    db_startup = models.Startup(**startup.model_dump())
+    EV_estimado = round(estimarEV(
+        startup.aporte_pedido,
+        startup.participacao
+    ), 2)
+
+
+    EV_calculado = round(calcularEV(
+        startup.faturamento,
+        startup.margem,
+        startup.setor,
+        startup.monetizacao
+    ), 2)
+
+
+
+    dados = startup.model_dump()
+    dados["valuation_estimado"] = EV_estimado
+    dados["valuation_calculado"] = EV_calculado
+
+    db_startup = models.Startup(**dados)
+    
     db.add(db_startup)
     db.commit()
     db.refresh(db_startup)

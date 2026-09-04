@@ -64,24 +64,31 @@
     <div>
       <h3>Aporte solicitado</h3>
       <span>R$</span>
-      <input type="number" id="aporte_pedido" name="aporte_pedido" min="0" step="1000" placeholder="0.00">
+      <input type="number" id="aporte_pedido" name="aporte_pedido" min="0" placeholder="0.00">
     </div>
 
     <div>
       <h3>Participação ofertada</h3>
-      <input type="number" id="participacao" name="participacao" min="0.01" max="100" step="1" placeholder="0.00">
+      <input type="number" id="participacao" name="participacao" min="0.00" max="100" placeholder="0.00">
       <span>%</span>
+    </div>
+
+    <div>
+      <h3>Valuation estimado</h3>
+      <span>R$</span>
+      <input type="text" id="valuation_estimado" name="valuation_estimado" placeholder="0.00" readonly>
+      <small>calculado automaticamente</small>
     </div>
 
     <div>
       <h3>Faturamento anual</h3>
       <span>R$</span>
-      <input type="number" id="faturamento" name="faturamento" min="0" step="1000" placeholder="0.00">
+      <input type="number" id="faturamento" name="faturamento" min="0" placeholder="0.00">
     </div>
 
     <div>
       <h3>Margem EBITDA</h3>
-      <input type="number" id="margem" name="margem" min="0" max="100" step="1" placeholder="0.00">
+      <input type="number" id="margem" name="margem" min="0" max="100" placeholder="0.00">
       <span>%</span>
     </div>
 
