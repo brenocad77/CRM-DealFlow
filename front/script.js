@@ -1,9 +1,23 @@
+const botao = document.getElementById("botao_forms");
+const x = document.getElementById("botao_fechar");
 const formulario = document.getElementById("AddStartup");
 const inputAporte = document.getElementById("aporte_pedido");
 const inputParticipacao = document.getElementById("participacao");
 const inputValuation = document.getElementById("valuation_estimado");
 const inputFaturamento = document.getElementById("faturamento");
 const inputMargem = document.getElementById("margem");
+
+formulario.style.display = "none";
+
+botao.addEventListener("click", function(){
+    console.log("Forms aberto.");
+    formulario.style.display = "block";
+});
+
+x.addEventListener("click", function(){
+    console.log("Forms fechado.");
+    formulario.style.display = "none";
+});
 
 function atualizarEV() {
     const aporte = Number(inputAporte.value);
@@ -66,5 +80,12 @@ formulario.addEventListener("submit", function(event) {
         console.log("Startup adicionada com sucesso!");
         formulario.reset(); 
     }
+    fetch("http://127.0.0.1:8000/startups/")
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(startups) {
+        console.log("Startups carregadas:", startups);
+    });
 });
 });
