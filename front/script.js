@@ -1,3 +1,4 @@
+const dashboard = document.getElementById("dashboard");
 const botao = document.getElementById("botao_forms");
 const x = document.getElementById("botao_fechar");
 const formulario = document.getElementById("AddStartup");
@@ -10,11 +11,21 @@ const inputMargem = document.getElementById("margem");
 formulario.style.display = "none";
 
 botao.addEventListener("click", function(){
+    dashboard.classList.add(
+        "blur-sm",
+        "brightness-60",
+        "pointer-events-none"
+    );
     console.log("Forms aberto.");
     formulario.style.display = "block";
 });
 
 x.addEventListener("click", function(){
+    dashboard.classList.remove(
+        "blur-sm",
+        "brightness-60",
+        "pointer-events-none"
+    );
     console.log("Forms fechado.");
     formulario.style.display = "none";
 });
