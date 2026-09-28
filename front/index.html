@@ -102,7 +102,7 @@
             <div class="min-w-0">
               <h2 class="text-sm text-zinc-300">Valuation médio</h2>
               <p class="mt-1 whitespace-nowrap text-2xl font-semibold">R$ 0</p>
-              <p class="mt-1 text-xs text-emerald-400">↑ 0% vs. mês anterior</p>
+              <p class="mt-1 text-xs text-emerald-400">0% vs. mês anterior</p>
             </div>
           </article>
           <article class="flex min-h-[114px] items-start gap-4 rounded-xl border border-zinc-800 bg-[#242424] p-4">
@@ -180,11 +180,8 @@
                   </div>
                   <p class="mt-1 text-sm text-zinc-300">R$ 0</p>
                 </div>
-                
-                <div id="pipeline-negociacao" class="flex flex-col gap-2">
-                  
+                <div id="pipeline-negociacao" class="flex flex-col gap-2">      
                 </div>
-                
               </div>
 
               <div class="flex min-h-[376px] flex-col rounded-lg border border-zinc-700 border-t-[3px] border-violet-500 bg-[#292929] p-2">
@@ -197,9 +194,7 @@
                 </div>
 
                 <div id="pipeline-due" class="flex flex-col gap-2">
-
                 </div>
-
               </div>
 
               <div class="flex min-h-[376px] flex-col rounded-lg border border-zinc-700 border-t-[3px] border-emerald-500 bg-[#292929] p-2">
@@ -210,12 +205,10 @@
                   </div>
                   <p class="mt-1 text-sm text-zinc-300">R$ 0</p>
                 </div>
-
                 <div id="pipeline-fechado" class="flex flex-col gap-2">
-
                 </div>
-
               </div>
+
               <div class="flex min-h-[376px] flex-col rounded-lg border border-zinc-700 border-t-[3px] border-slate-400 bg-[#292929] p-2">
                 <div class="px-2 pb-3 pt-1">
                   <div class="flex items-center justify-between gap-2">
@@ -224,12 +217,10 @@
                   </div>
                   <p class="mt-1 text-sm text-zinc-300">R$ 0</p>
                 </div>
-
                 <div id="pipeline-cancelado" class="flex flex-col gap-2">
-
                 </div>
-
               </div>
+
             </div>
           </div>
         </section>
@@ -274,7 +265,6 @@
                   <span>Cancelado</span>
               </div>
           </article>
-          
         </section>
       </main>
     </div>
@@ -373,7 +363,691 @@
       <button type="submit" class="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold hover:bg-blue-500">Salvar startup</button>
     </div>
   </form>
-  
+
+<div
+    id="startup-previa-pitch"
+    class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/75 px-4 py-8"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="detalhe-nome"
+>
+    <div class="flex min-h-full items-center justify-center">
+
+        <section
+            class="w-full max-w-3xl overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900 text-white shadow-2xl"
+        >
+            <header
+                class="flex items-start justify-between gap-4 border-b border-zinc-800 p-6"
+            >
+                <div class="flex min-w-0 items-center gap-4">
+
+                    <div
+                        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                    >
+                        <div
+                            id="detalhe-icone"
+                            class="detalhe-icone flex h-14 w-14 items-center justify-center"
+                        ></div>
+                    </div>
+
+                    <div class="min-w-0">
+
+                        <p
+                            class="mb-1 text-xs font-medium uppercase tracking-wider text-zinc-500"
+                        >
+                            Startup · Pitch
+                        </p>
+
+                        <h2
+                            id="detalhe-nome"
+                            class="break-words text-2xl font-semibold text-white"
+                        >
+                            Nome da startup
+                        </h2>
+
+                        <div class="mt-2 flex flex-wrap items-center gap-2">
+
+                            <span
+                                id="detalhe-setor"
+                                class="text-sm text-zinc-400"
+                            >
+                                Setor
+                            </span>
+
+                            <span class="text-zinc-600">
+                                •
+                            </span>
+
+                            <span
+                                id="detalhe-porte"
+                                class="rounded-md border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs font-medium text-zinc-300"
+                            >
+                                Porte a definir
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button
+                  type="button"
+                  aria-label="Fechar pitch"
+                  class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
+                >
+                    <i
+                        data-lucide="x"
+                        class="h-5 w-5"
+                    ></i>
+                </button>
+            </header>
+
+            <div class="space-y-7 p-6">
+                <section>
+                    <h3
+                        class="mb-4 text-sm font-semibold text-zinc-200"
+                    >
+                        Modelo de negócio
+                    </h3>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div
+                            class="rounded-lg border border-zinc-800 bg-zinc-950 p-4"
+                        >
+                            <div class="mb-3 flex items-center gap-2 text-zinc-400">
+                                <i
+                                    data-lucide="wallet"
+                                    class="h-4 w-4"
+                                ></i>
+                                <h4 class="text-xs font-medium uppercase tracking-wider">
+                                    Monetização
+                                </h4>
+                            </div>
+                            <p
+                                id="detalhe-monetizacao"
+                                class="break-words text-base font-medium text-zinc-100"
+                            >
+                                —
+                            </p>
+                        </div>
+                        <div
+                            class="rounded-lg border border-zinc-800 bg-zinc-950 p-4"
+                        >
+                            <div class="mb-3 flex items-center gap-2 text-zinc-400">
+                                <i
+                                    data-lucide="users"
+                                    class="h-4 w-4"
+                                ></i>
+
+                                <h4 class="text-xs font-medium uppercase tracking-wider">
+                                    Público-alvo
+                                </h4>
+                            </div>
+                            <p
+                                id="detalhe-publico"
+                                class="break-words text-base font-medium text-zinc-100"
+                            >
+                                —
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3
+                        class="mb-4 text-sm font-semibold text-zinc-200"
+                    >
+                        Sobre a startup
+                    </h3>
+                    <div
+                        class="rounded-lg border border-zinc-800 bg-zinc-950 p-4"
+                    >
+                        <p
+                            id="detalhe-descricao"
+                            class="whitespace-pre-line break-words text-sm leading-7 text-zinc-300"
+                        >
+                            Descrição da startup.
+                        </p>
+
+                    </div>
+                </section>
+                <section>
+                    <h3
+                        class="mb-4 text-sm font-semibold text-zinc-200"
+                    >
+                        Proposta de investimento
+                    </h3>
+
+                    <div
+                        class="grid grid-cols-1 gap-4 sm:grid-cols-3"
+                    >
+                        <div
+                            class="rounded-lg border border-zinc-800 bg-zinc-950 p-4"
+                        >
+                            <p
+                                class="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-400"
+                            >
+                                Aporte pedido
+                            </p>
+
+                            <p
+                                id="detalhe-aporte"
+                                class="break-words text-lg font-semibold text-white"
+                            >
+                                —
+                            </p>
+                        </div>
+                        <div
+                            class="rounded-lg border border-zinc-800 bg-zinc-950 p-4"
+                        >
+                            <p
+                                class="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-400"
+                            >
+                                Participação ofertada
+                            </p>
+                            <p
+                                id="detalhe-participacao"
+                                class="text-lg font-semibold text-white"
+                            >
+                                —
+                            </p>
+                        </div>
+                        <div
+                            class="rounded-lg border border-zinc-700 bg-zinc-800 p-4"
+                        >
+                            <p
+                                class="mb-3 text-xs font-medium uppercase tracking-wider text-zinc-400"
+                            >
+                                Valuation estimado
+                            </p>
+                            <p
+                                id="detalhe-valuation"
+                                class="break-words text-lg font-semibold text-white"
+                            >
+                                —
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <footer
+                class="flex flex-col-reverse gap-3 border-t border-zinc-800 bg-zinc-900 px-6 py-5 sm:flex-row sm:items-center sm:justify-between"
+            >
+                <button
+                    id="rejeitar"
+                    type="button"
+                    class="flex items-center justify-center gap-2 rounded-lg border border-red-900 bg-zinc-800 px-5 py-3 text-sm font-semibold text-red-400 transition-colors hover:bg-zinc-700"
+                >
+                    <i
+                        data-lucide="x-circle"
+                        class="h-4 w-4"
+                    ></i>
+                    Não investir
+                </button>
+                <button
+                    id="avancar-analise"
+                    type="button"
+                    class="flex items-center justify-center gap-2 rounded-lg bg-emerald-700 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-600"
+                >
+                    Encaminhar para Análise
+                    <i
+                        data-lucide="arrow-right"
+                        class="h-4 w-4"
+                    ></i>
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
+<div
+    id="startup-previa-analise"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="analise-titulo"
+    class="fixed inset-0 z-[70] hidden overflow-y-auto bg-black/65 px-4 py-6 text-zinc-100"
+>
+    <div class="flex min-h-full items-center justify-center">
+        <section class="w-full max-w-3xl rounded-xl border border-zinc-700 bg-[#242424] shadow-2xl">
+            <header class="flex items-start justify-between gap-4 border-b border-zinc-700 px-5 py-5 sm:px-7">
+                <div class="flex min-w-0 items-center gap-4">
+                    <div
+                        class="detalhe-icone flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="min-w-0">
+                    <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-blue-400">Startup · Análise</p>
+                    <p id="analise-nome" class="mt-1 text-sm text-white">Nome da startup</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    aria-label="Fechar análise"
+                    class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xl text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+                >
+                    &times;
+                </button>
+            </header>
+
+            <div class="max-h-[70vh] space-y-6 overflow-y-auto px-5 py-6 sm:px-7">
+                <section aria-labelledby="analise-oferta-titulo">
+                    <h3 id="analise-oferta-titulo" class="mb-3 text-sm font-semibold text-zinc-200">Oferta apresentada</h3>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Aporte pedido</p>
+                            <p id="analise-aporte" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Participação ofertada</p>
+                            <p id="analise-participacao" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Valuation estimado</p>
+                            <p id="analise-valuation-estimado" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-labelledby="analise-financeiro-titulo">
+                    <h3 id="analise-financeiro-titulo" class="mb-3 text-sm font-semibold text-zinc-200">Indicadores financeiros</h3>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-lg border border-zinc-700 bg-zinc-800 p-4">
+                            <p class="text-xs text-zinc-400">Faturamento anual</p>
+                            <p id="analise-faturamento" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-zinc-800 p-4">
+                            <p class="text-xs text-zinc-400">Margem EBITDA</p>
+                            <p id="analise-margem" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-zinc-800 p-4">
+                            <p class="text-xs text-zinc-400">Valuation calculado</p>
+                            <p id="analise-valuation-calculado" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-5" aria-labelledby="analise-parecer-titulo">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <h2 id="analise-parecer-titulo" class="text-xl font-semibold text-blue-200"> Parecer da oferta: </h2>
+                        <span id="analise-parecer" class="rounded-md border border-zinc-600 bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300">
+
+                        </span>
+                    </div>
+                    <p id="analise-comentario" class="mt-3 whitespace-pre-line text-sm leading-6 text-white">
+
+                    </p>
+                </section>
+
+                <section aria-labelledby="analise-sugestao-titulo">
+                    <h3 id="analise-sugestao-titulo" class="text-sm font-semibold text-zinc-200">Eventual correção da oferta</h3>
+                    <p class="mt-1 text-sm text-zinc-400">Participação sugerida para o mesmo valor de aporte, caso seja necessária uma contraproposta.</p>
+                    <div class="mt-3 max-w-xs">
+                        <label for="analise-participacao-sugerida" class="mb-2 block text-xs font-medium text-zinc-300">Participação sugerida</label>
+                        <div class="relative">
+                            <input
+                                id="analise-participacao-sugerida"
+                                type="number"
+                                min="0"
+                                max="100"
+                                step="0.01"
+                                placeholder="A calcular"
+                                readonly
+                                class="w-full rounded-lg border border-blue-500/60 bg-blue-500/10 px-4 py-4 pr-12 text-xl font-bold text-blue-400 outline-none placeholder:text-zinc-500"
+                            >
+                            <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-blue-400">%</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="flex flex-col-reverse gap-3 border-t border-zinc-700 px-5 py-5 sm:flex-row sm:justify-end sm:px-7">
+                <button
+                    id="analise-enviar-oferta"
+                    type="button"
+                    class="rounded-lg border border-zinc-600 bg-zinc-800 px-5 py-3 text-sm font-semibold text-zinc-100 hover:bg-zinc-700"
+                >
+                    Enviar oferta sugerida
+                </button>
+                <button
+                    id="analise-aceitar-termos"
+                    type="button"
+                    class="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-500"
+                >
+                    Aceitar termos propostos
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
+<div
+    id="startup-previa-negociacao"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="negociacao-titulo"
+    class="fixed inset-0 z-[70] hidden overflow-y-auto bg-black/65 px-4 py-6 text-zinc-100"
+>
+    <div class="flex min-h-full items-center justify-center">
+        <section class="w-full max-w-2xl rounded-xl border border-zinc-700 bg-[#242424] shadow-2xl">
+            <header class="flex items-start justify-between gap-4 border-b border-zinc-700 px-5 py-5 sm:px-7">
+                <div class="flex min-w-0 items-center gap-4">
+                    <div
+                        class="detalhe-icone flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="min-w-0">
+                    <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-blue-400">Startup · Negociação</p>
+                    <h2 id="negociacao-titulo" class="text-xl font-semibold text-white sm:text-2xl">Contraproposta enviada</h2>
+                    <p id="negociacao-nome" class="mt-1 text-sm text-zinc-400">Nome da startup</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    aria-label="Fechar negociação"
+                    class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xl text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+                >
+                    &times;
+                </button>
+            </header>
+
+            <div class="max-h-[70vh] space-y-6 overflow-y-auto px-5 py-6 sm:px-7">
+                <section aria-labelledby="negociacao-oferta-titulo">
+                    <h3 id="negociacao-oferta-titulo" class="mb-3 text-sm font-semibold text-zinc-200">Sua oferta enviada à startup</h3>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Aporte oferecido</p>
+                            <p id="negociacao-aporte" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Participação solicitada</p>
+                            <p id="negociacao-participacao" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Valuation da proposta</p>
+                            <p id="negociacao-valuation" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="rounded-lg border border-zinc-700 bg-zinc-800 p-5" aria-labelledby="negociacao-resposta-titulo">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <h3 id="negociacao-resposta-titulo" class="text-sm font-semibold text-zinc-200">Resposta da startup</h3>
+                        <span id="negociacao-status" class="rounded-md border border-zinc-600 bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-200"> </span>
+                    </div>
+                    <p id="negociacao-resposta" class="mt-3 text-sm leading-6 text-zinc-400">
+                        
+                    </p>
+                </section>
+            </div>
+
+            <footer class="flex flex-col-reverse gap-3 border-t border-zinc-700 px-5 py-5 sm:flex-row sm:justify-end sm:px-7">
+                <button
+                    id="negociacao-recusada"
+                    type="button"
+                    class="rounded-lg border border-zinc-600 bg-zinc-800 px-5 py-3 text-sm font-semibold text-zinc-100 hover:bg-zinc-700"
+                >
+                    Startup recusou
+                </button>
+                <button
+                    id="negociacao-aceita"
+                    type="button"
+                    class="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-500"
+                >
+                    Startup aceitou
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
+<div
+    id="startup-previa-due"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="due-titulo"
+    class="fixed inset-0 z-[70] hidden overflow-y-auto bg-black/65 px-4 py-6 text-zinc-100"
+>
+    <div class="flex min-h-full items-center justify-center">
+        <section class="w-full max-w-2xl rounded-xl border border-zinc-700 bg-[#242424] shadow-2xl">
+            <header class="flex items-start justify-between gap-4 border-b border-zinc-700 px-5 py-5 sm:px-7">
+                <div class="flex min-w-0 items-center gap-4">
+                    <div
+                        class="detalhe-icone flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="min-w-0">
+                    <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-blue-400">Startup · Due Diligence</p>
+                    <h2 id="due-titulo" class="text-xl font-semibold text-white sm:text-2xl">Verificação da empresa</h2>
+                    <p id="due-nome" class="mt-1 text-sm text-zinc-400">Nome da startup</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    aria-label="Fechar due diligence"
+                    class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xl text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+                >
+                    &times;
+                </button>
+            </header>
+
+            <div class="max-h-[70vh] space-y-6 overflow-y-auto px-5 py-6 sm:px-7">
+                <section class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4" aria-labelledby="due-termos-titulo">
+                    <h3 id="due-termos-titulo" class="text-sm font-semibold text-zinc-200">Termos em avaliação</h3>
+                    <div class="mt-3 grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <p class="text-xs text-zinc-400">Aporte acordado</p>
+                            <p id="due-aporte" class="mt-1 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-400">Participação acordada</p>
+                            <p id="due-participacao" class="mt-1 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-labelledby="due-checklist-titulo">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <h3 id="due-checklist-titulo" class="text-sm font-semibold text-zinc-200">Itens de verificação</h3>
+                        <span id="due-status" class="rounded-md border border-zinc-600 bg-zinc-800 px-3 py-1 text-xs text-zinc-300"> </span>
+                    </div>
+                    <div class="mt-4 divide-y divide-zinc-700 rounded-lg border border-zinc-700 bg-zinc-800">
+                        <div class="flex items-center justify-between gap-3 p-4">
+                            <span class="text-sm text-zinc-200">Documentação societária</span>
+                            <span id="due-societario" class="text-xs text-zinc-400">Pendente</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-3 p-4">
+                            <span class="text-sm text-zinc-200">Informações financeiras</span>
+                            <span id="due-financeiro" class="text-xs text-zinc-400">Pendente</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-3 p-4">
+                            <span class="text-sm text-zinc-200">Aspectos jurídicos</span>
+                            <span id="due-juridico" class="text-xs text-zinc-400">Pendente</span>
+                        </div>
+                        <div class="flex items-center justify-between gap-3 p-4">
+                            <span class="text-sm text-zinc-200">Validação das informações</span>
+                            <span id="due-validacao" class="text-xs text-zinc-400">Pendente</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-labelledby="due-observacoes-titulo">
+                    <h3 id="due-observacoes-titulo" class="mb-2 text-sm font-semibold text-zinc-200">Observações</h3>
+                    <textarea
+                        id="due-observacoes"
+                        rows="3"
+                        placeholder="Anotações sobre a verificação..."
+                        class="w-full resize-y rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-blue-500"
+                    ></textarea>
+                </section>
+            </div>
+
+            <footer class="flex flex-col-reverse gap-3 border-t border-zinc-700 px-5 py-5 sm:flex-row sm:justify-end sm:px-7">
+                <button
+                    id="due-cancelar"
+                    type="button"
+                    class="rounded-lg border border-zinc-600 bg-zinc-800 px-5 py-3 text-sm font-semibold text-zinc-100 hover:bg-zinc-700"
+                >
+                    Cancelar investimento
+                </button>
+                <button
+                    id="due-concluir"
+                    type="button"
+                    class="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-500"
+                >
+                    Concluir e fechar acordo
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
+<div
+    id="startup-previa-fechado"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="fechado-titulo"
+    class="fixed inset-0 z-[70] hidden overflow-y-auto bg-black/65 px-4 py-6 text-zinc-100"
+>
+    <div class="flex min-h-full items-center justify-center">
+        <section class="w-full max-w-2xl rounded-xl border border-zinc-700 bg-[#242424] shadow-2xl">
+            <header class="flex items-start justify-between gap-4 border-b border-zinc-700 px-5 py-5 sm:px-7">
+                <div class="flex min-w-0 items-center gap-4">
+                    <div
+                        class="detalhe-icone flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="min-w-0">
+                    <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-emerald-400">Startup · Fechado</p>
+                    <h2 id="fechado-titulo" class="text-xl font-semibold text-white sm:text-2xl">Termos do acordo</h2>
+                    <p id="fechado-nome" class="mt-1 text-sm text-zinc-400">Nome da startup</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    aria-label="Fechar termos do acordo"
+                    class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xl text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+                >
+                    &times;
+                </button>
+            </header>
+
+            <div class="max-h-[70vh] space-y-6 overflow-y-auto px-5 py-6 sm:px-7">
+                <div class="rounded-lg border border-emerald-900/60 bg-emerald-950/20 px-4 py-3">
+                    <p class="text-sm font-medium text-emerald-300">Negociação concluída</p>
+                    <p class="mt-1 text-xs text-zinc-400"> </p>
+                </div>
+
+                <section aria-labelledby="fechado-condicoes-titulo">
+                    <h3 id="fechado-condicoes-titulo" class="mb-3 text-sm font-semibold text-zinc-200">Condições finais</h3>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Aporte acordado</p>
+                            <p id="fechado-aporte" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4">
+                            <p class="text-xs text-zinc-400">Participação adquirida</p>
+                            <p id="fechado-participacao" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-zinc-800 p-4">
+                            <p class="text-xs text-zinc-400">Valuation final</p>
+                            <p id="fechado-valuation" class="mt-2 text-lg font-semibold tabular-nums text-white">—</p>
+                        </div>
+                        <div class="rounded-lg border border-zinc-700 bg-zinc-800 p-4">
+                            <p class="text-xs text-zinc-400">Origem do acordo</p>
+                            <p id="fechado-origem" class="mt-2 text-sm font-medium text-white">—</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="grid gap-4 rounded-lg border border-zinc-700 bg-zinc-800 p-4 sm:grid-cols-2" aria-label="Informações do fechamento">
+                    <div>
+                        <p class="text-xs text-zinc-400">Data do fechamento</p>
+                        <p id="fechado-data" class="mt-1 text-sm font-medium text-zinc-200">—</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-zinc-400">Situação do acordo</p>
+                        <p class="mt-1 text-sm font-medium text-emerald-300">Fechado</p>
+                    </div>
+                </section>
+
+                <section aria-labelledby="fechado-observacoes-titulo">
+                    <h3 id="fechado-observacoes-titulo" class="mb-2 text-sm font-semibold text-zinc-200">Observações e condições adicionais</h3>
+                    <p id="fechado-observacoes" class="min-h-20 rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4 text-sm leading-6 text-zinc-400"> </p>
+                </section>
+            </div>
+
+            <footer class="flex justify-end border-t border-zinc-700 px-5 py-5 sm:px-7">
+                <button
+                    type="button"
+                    class="fechar-etapa rounded-lg border border-zinc-600 bg-zinc-800 px-5 py-3 text-sm font-semibold text-zinc-100 hover:bg-zinc-700"
+                >
+                    Fechar
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
+<div
+    id="startup-previa-cancelado"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cancelado-titulo"
+    class="fixed inset-0 z-[70] hidden overflow-y-auto bg-black/65 px-4 py-6 text-zinc-100"
+>
+    <div class="flex min-h-full items-center justify-center">
+        <section class="w-full max-w-xl rounded-xl border border-zinc-700 bg-[#242424] shadow-2xl">
+            <header class="flex items-start justify-between gap-4 border-b border-zinc-700 px-5 py-5 sm:px-7">
+                <div class="flex min-w-0 items-center gap-4">
+                    <div
+                        class="detalhe-icone flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-zinc-800 text-zinc-200"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="min-w-0">
+                    <p class="mb-1 text-xs font-semibold uppercase tracking-wider text-red-400">Startup · Cancelado</p>
+                    <h2 id="cancelado-titulo" class="text-xl font-semibold text-white sm:text-2xl">Negociação cancelada</h2>
+                    <p id="cancelado-nome" class="mt-1 text-sm text-zinc-400">Nome da startup</p>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    aria-label="Fechar motivo do cancelamento"
+                    class="fechar-etapa flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xl text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+                >
+                    &times;
+                </button>
+            </header>
+
+            <div class="max-h-[70vh] space-y-5 overflow-y-auto px-5 py-6 sm:px-7">
+                <section aria-labelledby="cancelado-motivo-titulo">
+                    <h3 id="cancelado-motivo-titulo" class="mb-2 text-sm font-semibold text-zinc-200">Motivo do cancelamento</h3>
+                    <p id="cancelado-motivo" class="min-h-28 rounded-lg border border-zinc-700 bg-[#1b1b1b] p-4 text-sm leading-6 text-zinc-400">
+                      —
+                    </p>
+                </section>
+                <section class="grid gap-4 rounded-lg border border-zinc-700 bg-zinc-800 p-4 sm:grid-cols-2" aria-label="Informações do cancelamento">
+                    <div>
+                        <p class="text-xs text-zinc-400">Etapa em que foi cancelada</p>
+                        <p id="cancelado-etapa" class="mt-1 text-sm font-medium text-zinc-200">—</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-zinc-400">Data do cancelamento</p>
+                        <p id="cancelado-data" class="mt-1 text-sm font-medium text-zinc-200">—</p>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="flex justify-end border-t border-zinc-700 px-5 py-5 sm:px-7">
+                <button
+                    type="button"
+                    class="fechar-etapa rounded-lg border border-zinc-600 bg-zinc-800 px-5 py-3 text-sm font-semibold text-zinc-100 hover:bg-zinc-700"
+                >
+                    Fechar
+                </button>
+            </footer>
+        </section>
+    </div>
+</div>
+
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script src="script.js"></script>
 </body>

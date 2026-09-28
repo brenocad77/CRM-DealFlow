@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 from valuation import calcularEV, estimarEV
+from avaliacao import contraoferta
 
 import models, schemas
 from database import engine, get_db
@@ -26,15 +27,12 @@ def criar_startup(startup: schemas.StartupCreate, db: Session = Depends(get_db))
         startup.participacao
     ), 2)
 
-
     EV_calculado = round(calcularEV(
         startup.faturamento,
         startup.margem,
         startup.setor,
         startup.monetizacao
     ), 2)
-
-
 
     dados = startup.model_dump()
     dados["valuation_estimado"] = EV_estimado
@@ -46,6 +44,41 @@ def criar_startup(startup: schemas.StartupCreate, db: Session = Depends(get_db))
     db.commit()
     db.refresh(db_startup)
     return db_startup
+
+@app.get("/startups/{startup_id}/avaliacao")
+def avaliar_startup(
+    startup_id: int,
+    db: Session = Depends(get_db)
+):
+    startup = db.query(models.Startup).filter(
+        models.Startup.id == startup_id
+    ).first()
+
+    if not startup:
+        raise HTTPException(
+            status_code=404,
+            detail="Startup não encontrada"
+        )
+
+    if startup.valuation_calculado <= 0:
+        raise HTTPException(
+            status_code=422,
+            detail="Valuation calculado deve ser positivo"
+        )
+
+    parecer, participacao_sugerida = contraoferta(
+        startup.valuation_estimado,
+        startup.valuation_calculado,
+        startup.participacao,
+        startup.aporte_pedido
+    )
+
+    return {
+        "parecer": parecer,
+        "participacao_sugerida": round(
+            participacao_sugerida, 2
+        )
+    }
 
 @app.get("/startups/", response_model=List[schemas.StartupResponse])
 def ler_startups(db: Session = Depends(get_db)):
