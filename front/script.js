@@ -33,11 +33,16 @@ const colunas = {
 };
 let startupAtual = null;
 let etapaAtual = null;
+let resultadoNegociacaoAtual = null;
 const negar = document.getElementById("rejeitar");
 const avancarPitch = document.getElementById("avancar-analise");
 const participacao_sugerida = document.getElementById("analise-participacao-sugerida");
 const parecer = document.getElementById("analise-parecer");
 const comentario = document.getElementById("analise-comentario");
+const statusNegociacao = document.getElementById("negociacao-status");
+const mensagem = document.getElementById("negociacao-resposta");
+const botaoNegar = document.getElementById("negociacao-recusada");
+const botaoAceitar = document.getElementById("negociacao-aceita");
 const negociarAnalise = document.getElementById("analise-enviar-oferta");
 const avancarAnalise = document.getElementById("analise-aceitar-termos");
 
@@ -46,6 +51,8 @@ document.querySelectorAll(".fechar-etapa").forEach(function(botao) {
 });
 
 formulario.style.display = "none";
+botaoNegar.style.display = "none";
+
 Object.values(modais).forEach(function(modal) {
     if (modal) {
         modal.style.display = "none";
@@ -211,6 +218,12 @@ function preencherEtapa(startup, icone_previa) {
                 formatarMoeda(startup.valuation_calculado);
             carregarAvaliacao(startup.id);
             break;
+        case "NEGOCIACAO":
+            document.getElementById("negociacao-nome").textContent = startup.nome;
+            document.getElementById("negociacao-aporte").textContent =
+                formatarMoeda(startup.aporte_pedido);
+            carregarNegociacao(startup.id, startup.aporte_pedido);
+            break;
     }
 }
 
@@ -272,6 +285,87 @@ function carregarAvaliacao(id) {
         });
 }
 
+function carregarNegociacao(id, aporte) {
+    fetch(`http://127.0.0.1:8000/startups/${id}/negociacao`)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error("Erro ao carregar negociação.");
+            }
+
+            return response.json();
+        })
+        .then(function(dados) {
+            const resultado = dados.resultado;
+            const resposta = dados.resposta;
+            const participacao_sugerida = dados.participacao_sugerida;
+            resultadoNegociacaoAtual = resultado;
+
+            document.getElementById("negociacao-participacao").textContent =
+                Number(participacao_sugerida).toLocaleString("pt-BR") + "%";
+            document.getElementById("negociacao-valuation").textContent =
+                formatarMoeda(aporte / (participacao_sugerida / 100));
+
+            if (resultado === "aceite") {
+                statusNegociacao.textContent = "Aceita";
+                botaoNegar.style.display = "none";
+                botaoAceitar.textContent = "Prosseguir";
+            }
+            else if (resultado === "recusa") {
+                statusNegociacao.textContent = "Recusada";
+                botaoNegar.style.display = "none";
+                botaoAceitar.textContent = "Prosseguir";
+            }
+            else {
+                statusNegociacao.textContent = "Nova proposta";
+                botaoNegar.style.display = "block";
+                botaoAceitar.textContent = "Aceitar contraproposta";
+            }
+
+            statusNegociacao.classList.remove(
+                "border-emerald-500", "bg-emerald-500/10", "text-emerald-400",
+                "border-blue-500", "bg-blue-500/10", "text-blue-400",
+                "border-red-500", "bg-red-500/10", "text-red-400",
+                "border-zinc-600", "bg-zinc-800", "text-zinc-300"
+            );
+
+            const cores = {
+                "Aceita": ["border-emerald-500", "bg-emerald-500/10", "text-emerald-400"],
+                "Nova proposta": ["border-blue-500", "bg-blue-500/10", "text-blue-400"],
+                "Recusada": ["border-red-500", "bg-red-500/10", "text-red-400"]
+            };
+
+            statusNegociacao.classList.add(...cores[statusNegociacao.textContent]);
+
+           if (resultado === "aceite") {
+                mensagem.textContent =
+                    `A startup aceitou sua proposta de ${participacao_sugerida}% de participação.`;
+            }
+            else if (resultado === "recusa") {
+                mensagem.textContent =
+                    "A startup recusou sua proposta e decidiu não prosseguir com a negociação.";
+            }
+            else if (resultado === "flexivel") {
+                mensagem.innerHTML =
+                    `A startup demonstrou flexibilidade e fez uma contraproposta de <strong class="text-base text-blue-300">${resposta}%</strong>  de participação, mais próxima da sua proposta.`;
+            }
+            else if (resultado === "moderada") {
+                mensagem.innerHTML =
+                    `A startup decidiu negociar e fez uma contraproposta de <strong class="text-base text-blue-300">${resposta}%</strong>  de participação, chegando ao meio-termo entre a oferta original e sua proposta.`;
+            }
+            else if (resultado === "resistente") {
+                mensagem.innerHTML =
+                    `A startup fez uma contraproposta de <strong class="text-base text-blue-300">${resposta}%</strong>  de participação, mantendo uma posição mais próxima da oferta original.`;
+            }
+            else if (resultado === "rigida") {
+                mensagem.innerHTML =
+                    `A startup se mostrou pouco disposta a ceder e fez uma contraproposta de <strong class="text-base text-blue-300">${resposta}%</strong>  de participação, muito próxima da oferta original.`;
+            }
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
+}
+
 function atualizarEV() {
     const aporte = Number(inputAporte.value);
     const participacao = Number(inputParticipacao.value);
@@ -312,6 +406,39 @@ negar.addEventListener("click", function() {
         })
         .catch(function(error) {
             console.error("Não foi possível rejeitar a startup:", error);
+        });
+});
+
+botaoNegar.addEventListener("click", function() {
+    atualizarFase(startupAtual, "CANCELADO")
+        .then(function() {
+            fecharEtapa();
+            carregarStartups();
+
+            console.log("Startup rejeitada.");
+        })
+        .catch(function(error) {
+            console.error("Não foi possível rejeitar a startup:", error);
+        });
+});
+
+botaoAceitar.addEventListener("click", function() {
+    let novaFase;
+
+    if (resultadoNegociacaoAtual === "recusa") {
+        novaFase = "CANCELADO";
+    }
+    else {
+        novaFase = "DUE_DILIGENCE";
+    }
+
+    atualizarFase(startupAtual, novaFase)
+        .then(function() {
+            fecharEtapa();
+            carregarStartups();
+        })
+        .catch(function(error) {
+            console.error("Erro ao prosseguir negociação:", error);
         });
 });
 

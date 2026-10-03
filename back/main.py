@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from valuation import calcularEV, estimarEV
 from avaliacao import contraoferta
+from negociacao import retorno
 
 import models, schemas
 from database import engine, get_db
@@ -75,9 +76,50 @@ def avaliar_startup(
 
     return {
         "parecer": parecer,
-        "participacao_sugerida": round(
-            participacao_sugerida, 2
+        "participacao_sugerida": round(participacao_sugerida, 2)
+    }
+
+@app.get("/startups/{startup_id}/negociacao")
+def retorno_startup(
+    startup_id: int,
+    db: Session = Depends(get_db)
+):
+    startup = db.query(models.Startup).filter(
+        models.Startup.id == startup_id
+    ).first()
+
+    if not startup:
+        raise HTTPException(
+            status_code=404,
+            detail="Startup não encontrada"
         )
+
+    if startup.resultado_negociacao is None:
+        parecer, participacao_sugerida = contraoferta(
+            startup.valuation_estimado,
+            startup.valuation_calculado,
+            startup.participacao,
+            startup.aporte_pedido
+        )
+
+        resposta, resultado = retorno(
+            startup.participacao,
+            participacao_sugerida
+        )
+
+        if resposta is None:
+            resposta = participacao_sugerida
+
+        startup.resultado_negociacao = resultado
+        startup.resposta_negociacao = round(resposta, 2)
+        startup.participacao_sugerida = round(participacao_sugerida, 2)
+
+        db.commit()
+
+    return {
+        "resultado": startup.resultado_negociacao,
+        "resposta": startup.resposta_negociacao,
+        "participacao_sugerida": startup.participacao_sugerida
     }
 
 @app.get("/startups/", response_model=List[schemas.StartupResponse])

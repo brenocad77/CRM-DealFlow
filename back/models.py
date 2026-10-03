@@ -19,3 +19,7 @@ class Startup(Base):
     valuation_calculado = Column(Float)
     
     fase = Column(String, default="PITCH")
+
+    resultado_negociacao = Column(String, nullable=True)
+    resposta_negociacao = Column(Float, nullable=True)
+    participacao_sugerida = Column(Float, nullable=True)
